@@ -1,9 +1,10 @@
 {
   "name": "agent-003-email-rewriter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A bonded email rewriter agent — rewrites emails via Claude API, human approves or rejects, bond released or slashed through AgentGate",
   "scripts": {
     "start": "tsx src/cli.ts",
+    "build": "tsc --noEmit",
     "test": "vitest run"
   },
   "keywords": [],
