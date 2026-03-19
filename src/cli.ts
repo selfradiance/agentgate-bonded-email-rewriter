@@ -27,6 +27,13 @@ async function main() {
     process.exit(1);
   }
 
+  const MAX_EMAIL_BYTES = 10_240; // 10KB — an email larger than this is almost certainly not a single email
+  const fileSizeBytes = fs.statSync(absolutePath).size;
+  if (fileSizeBytes > MAX_EMAIL_BYTES) {
+    console.error(`Error: File is too large (${fileSizeBytes} bytes, max ${MAX_EMAIL_BYTES}). This agent is designed for single emails, not large files.`);
+    process.exit(1);
+  }
+
   const originalEmail = fs.readFileSync(absolutePath, "utf8").trim();
   if (!originalEmail) {
     console.error(`Error: File is empty: ${absolutePath}`);
